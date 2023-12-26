@@ -39,7 +39,6 @@ func DbConnect() error {
 }
 
 func ConnStr(claves models.SecretRDSJson) string {
-	fmt.Print(claves)
 	var dbUser, authToken, dbEndpoint, dbName string
 	dbUser = claves.Username
 	authToken = claves.Password

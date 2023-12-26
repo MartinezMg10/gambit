@@ -21,9 +21,11 @@ func Manejadores(path string, method string, body string, headers map[string]str
 		return statusCode, user
 	}
 
-	switch path[0:4] {
+	switch path[15:19] {
 	case "user":
 		return ProcesoUsers(body, path, method, user, id, request)
+	case "cate":
+		return ProcesoCategory(body, path, method, user, idn, request)
 	case "prod":
 		return ProcesoProducts(body, path, method, user, idn, request)
 	case "stoc":
@@ -33,6 +35,7 @@ func Manejadores(path string, method string, body string, headers map[string]str
 	case "orde":
 		return ProcesoOrder(body, path, method, user, idn, request)
 	}
+	fmt.Println("se quedo aqui")
 
 	return 400, "Method Invalid"
 }
@@ -61,6 +64,7 @@ func validoAuthorization(path string, method string, headers map[string]string) 
 	}
 
 	fmt.Println("Token OK")
+
 	return true, 200, msg
 }
 
